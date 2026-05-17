@@ -1,0 +1,266 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ToolCard from "@/components/ui/ToolCard.astro";
+import HexIcon from "@/components/ui/icons/astro/navbar/HexIcon.astro";
+import MarkPrintIcon from "@/components/ui/icons/astro/navbar/MarkPrintIcon.astro";
+import QrCustomIcon from "@/components/ui/icons/astro/navbar/QrCustomIcon.astro";
+import AspectRadioIcon from "@/components/ui/icons/astro/navbar/AspectRadioIcon.astro";
+import TypeContrastIcon from "@/components/ui/icons/astro/navbar/TypeContrastIcon.astro";
+
+import GithubIcon from "@/components/ui/icons/astro/social-media/GithubIcon.astro";
+
+---
+
+<Layout title="Toolers - Modern Creative Utilities">
+  <div class="landing-container">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">v1.0.0 is live</div>
+        <h1 class="main-title">Toolers</h1>
+        <p class="subtitle">
+          Una colección de herramientas de alto rendimiento diseñadas para
+          optimizar el flujo de trabajo en diseño y desarrollo. Sin relleno, sin
+          distracciones, pura utilidad.
+        </p>
+      </div>
+    </section>
+
+    <section class="tools-section">
+      <div class="section-header">
+        <h2 class="section-title">Explorar Herramientas</h2>
+      </div>
+
+      <div class="tools-grid">
+        <ToolCard
+          title="HexCanvas"
+          description="Structural background and grid visualizer with hex-based configuration."
+          href="/hex-canvas"
+        >
+          <HexIcon slot="icon" size={24} />
+        </ToolCard>
+
+        <ToolCard
+          title="MarkPrint"
+          description="High-fidelity Markdown to PDF engine with precision zoom controls."
+          href="/mark-print"
+        >
+          <MarkPrintIcon slot="icon" size={24} />
+        </ToolCard>
+
+        <ToolCard
+          title="QR-Custom"
+          description="Generative QR engine with aesthetic control and functional parameters."
+          href="#"
+        >
+          <QrCustomIcon slot="icon" size={24} />
+        </ToolCard>
+
+        <ToolCard
+          title="AspectRatio"
+          description="Intelligent image cropping and ratio adjustment for social platforms."
+          href="#"
+        >
+          <AspectRadioIcon slot="icon" size={24} />
+        </ToolCard>
+
+        <ToolCard
+          title="TypeContrast"
+          description="Accessibility and readability audit for typographic scales."
+          href="#"
+        >
+          <TypeContrastIcon slot="icon" size={24} />
+        </ToolCard>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <span class="footer-brand">Toolers</span>
+      <ul class="footer-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Documentación</a></li>
+        <li><a href="#">Soporte</a></li>
+      </ul>
+    </div>
+    <div class="footer-right">
+      <div class="footer-status">
+        <span class="dot"></span>
+        v1.0.0
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="GitHub">
+          <GithubIcon size={16} />
+        </a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .landing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 85px;
+  }
+
+  .hero {
+    padding: 10px 20px 90px;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--bg-container);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .main-title {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    line-height: 1.2;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .tools-section {
+    padding: 0 20px;
+    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .footer {
+    border-top: 1px solid var(--border-color);
+    padding: 24px 24px 0px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--text-primary);
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  .footer-social a {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: var(--bg-body);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .footer-social a:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+  }
+
+  .footer-social svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero {
+      padding: 60px 20px 80px;
+    }
+  }
+</style>

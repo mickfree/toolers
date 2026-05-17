@@ -1,0 +1,153 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  status?: "Stable" | "Beta" | "Alpha" | "New";
+}
+
+const { title, description, href, status } = Astro.props;
+---
+
+<a href={href} class="tool-card group">
+  <div class="icon-wrapper">
+    <slot name="icon" />
+  </div>
+  <div class="content">
+    <div class="header">
+      <h3 class="title">{title}</h3>
+      {status && <span class={`status-tag ${status.toLowerCase()}`}>{status}</span>}
+    </div>
+    <p class="description">{description}</p>
+  </div>
+  <div class="arrow">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </div>
+</a>
+
+<style>
+  .tool-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--bg-container);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tool-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .tool-card:hover {
+    border-color: var(--text-primary);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .tool-card:hover::before {
+    opacity: 1;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-body);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+  }
+
+  .tool-card:hover .icon-wrapper {
+    background: var(--text-primary);
+    color: var(--bg-body);
+    transform: scale(1.1);
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .status-tag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .status-tag.stable { background: #e6f4ea; color: #1e8e3e; }
+  .status-tag.beta { background: #fef7e0; color: #f9ab00; }
+  .status-tag.alpha { background: #fce8e6; color: #d93025; }
+  .status-tag.new { background: #e8f0fe; color: #1a73e8; }
+
+  body.dark-theme .status-tag.stable { background: rgba(30, 142, 62, 0.2); color: #81c995; }
+  body.dark-theme .status-tag.beta { background: rgba(249, 171, 0, 0.2); color: #fdd663; }
+  body.dark-theme .status-tag.alpha { background: rgba(217, 48, 37, 0.2); color: #f28b82; }
+  body.dark-theme .status-tag.new { background: rgba(26, 115, 232, 0.2); color: #8ab4f8; }
+
+  .description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s ease;
+    color: var(--text-primary);
+  }
+
+  .tool-card:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 640px) {
+    .tool-card {
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+    .icon-wrapper {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>

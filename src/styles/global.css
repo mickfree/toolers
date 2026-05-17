@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+    /* Light Mode Variables */
+    --bg-body: #f8f9fa;
+    --bg-container: #ffffff;
+    --text-primary: #1a1d1e;
+    --text-secondary: #5a5e60;
+    --border-color: #e1e4e6;
+    --btn-bg: #1a1d1e;
+    --btn-text: #ffffff;
+}
+
+body.dark-theme {
+    /* Dark Mode Variables */
+    --bg-body: #181a1b;
+    --bg-container: #202324;
+    --text-primary: #ffffff;
+    --text-secondary: #dfdcd8;
+    --border-color: #313637;
+    --btn-bg: #ffffff;
+    --btn-text: #1a1d1e;
+}
