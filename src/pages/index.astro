@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import ToolCard from "@/components/ui/ToolCard.astro";
+import ToolCard from "@/components/ui/cards/astro/ToolCard.astro";
 import HexIcon from "@/components/ui/icons/astro/navbar/HexIcon.astro";
 import MarkPrintIcon from "@/components/ui/icons/astro/navbar/MarkPrintIcon.astro";
 import QrCustomIcon from "@/components/ui/icons/astro/navbar/QrCustomIcon.astro";
@@ -8,20 +8,76 @@ import AspectRadioIcon from "@/components/ui/icons/astro/navbar/AspectRadioIcon.
 import TypeContrastIcon from "@/components/ui/icons/astro/navbar/TypeContrastIcon.astro";
 
 import GithubIcon from "@/components/ui/icons/astro/social-media/GithubIcon.astro";
+import { version } from "../../package.json";
+
+const title = "Toolers - Modern Creative Utilities"
+
+const features = [
+  {
+    title: "Toolers",
+    description: "Una colección de herramientas de alto rendimiento diseñadas para optimizar el flujo de trabajo en diseño y desarrollo. Sin relleno, sin distracciones, pura utilidad."
+  }
+]
+
+const tools = [
+  {
+    title: "HexCanvas",
+    description: "Structural background and grid visualizer with hex-based configuration.",
+    href: "/hex-canvas",
+    icon: HexIcon
+  },
+  {
+    title: "MarkPrint",
+    description: "High-fidelity Markdown to PDF engine with precision zoom controls.",
+    href: "/mark-print",
+    icon: MarkPrintIcon
+  },
+  {
+    title: "QR-Custom",
+    description: "Generative QR engine with aesthetic control and functional parameters.",
+    href: "#",
+    icon: QrCustomIcon
+  },
+  {
+    title: "AspectRatio",
+    description: "Intelligent image cropping and ratio adjustment for social platforms.",
+    href: "#",
+    icon: AspectRadioIcon
+  },
+  {
+    title: "TypeContrast",
+    description: "Accessibility and readability audit for typographic scales.",
+    href: "#",
+    icon: TypeContrastIcon
+  }
+];
+
+
+const footers = [
+  {
+    href: "#",
+    title: "Inicio"
+  },
+  {
+    href: "#",
+    title: "Documentación"
+  },
+  {
+    href: "#",
+    title: "Soporte"
+  }
+]
 
 ---
 
-<Layout title="Toolers - Modern Creative Utilities">
+<Layout title={title}>
   <div class="landing-container">
     <section class="hero">
       <div class="hero-content">
-        <div class="badge">v1.0.0 is live</div>
-        <h1 class="main-title">Toolers</h1>
-        <p class="subtitle">
-          Una colección de herramientas de alto rendimiento diseñadas para
-          optimizar el flujo de trabajo en diseño y desarrollo. Sin relleno, sin
-          distracciones, pura utilidad.
-        </p>
+        {features.map((feature) => (
+            <h1 class="main-title">{feature.title}</h1>
+            <p class="subtitle">{feature.description}</p>
+        ))}
       </div>
     </section>
 
@@ -31,45 +87,18 @@ import GithubIcon from "@/components/ui/icons/astro/social-media/GithubIcon.astr
       </div>
 
       <div class="tools-grid">
-        <ToolCard
-          title="HexCanvas"
-          description="Structural background and grid visualizer with hex-based configuration."
-          href="/hex-canvas"
-        >
-          <HexIcon slot="icon" size={24} />
-        </ToolCard>
-
-        <ToolCard
-          title="MarkPrint"
-          description="High-fidelity Markdown to PDF engine with precision zoom controls."
-          href="/mark-print"
-        >
-          <MarkPrintIcon slot="icon" size={24} />
-        </ToolCard>
-
-        <ToolCard
-          title="QR-Custom"
-          description="Generative QR engine with aesthetic control and functional parameters."
-          href="#"
-        >
-          <QrCustomIcon slot="icon" size={24} />
-        </ToolCard>
-
-        <ToolCard
-          title="AspectRatio"
-          description="Intelligent image cropping and ratio adjustment for social platforms."
-          href="#"
-        >
-          <AspectRadioIcon slot="icon" size={24} />
-        </ToolCard>
-
-        <ToolCard
-          title="TypeContrast"
-          description="Accessibility and readability audit for typographic scales."
-          href="#"
-        >
-          <TypeContrastIcon slot="icon" size={24} />
-        </ToolCard>
+        {tools.map((tool) => {
+          const Icon = tool.icon;
+          return (
+            <ToolCard
+              title={tool.title}
+              description={tool.description}
+              href={tool.href}
+            >
+              <Icon slot="icon" size={24} />
+            </ToolCard>
+          );
+        })}
       </div>
     </section>
   </div>
@@ -78,15 +107,14 @@ import GithubIcon from "@/components/ui/icons/astro/social-media/GithubIcon.astr
     <div class="footer-left">
       <span class="footer-brand">Toolers</span>
       <ul class="footer-links">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Documentación</a></li>
-        <li><a href="#">Soporte</a></li>
+        {footers.map((footer) => (
+          <li><a href={footer.href}>{footer.title}</a></li>
+        ))}
       </ul>
     </div>
     <div class="footer-right">
       <div class="footer-status">
-        <span class="dot"></span>
-        v1.0.0
+        <span class="dot">v{version}</span>
       </div>
       <div class="footer-social">
         <a href="#" aria-label="GitHub">
@@ -107,6 +135,7 @@ import GithubIcon from "@/components/ui/icons/astro/social-media/GithubIcon.astr
   .hero {
     padding: 10px 20px 90px;
     text-align: center;
+    margin-top: 5.5%;
   }
 
   .hero-content {
